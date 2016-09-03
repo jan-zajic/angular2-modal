@@ -37,7 +37,7 @@ export interface EmbedComponentConfig {
   template:
 `<template #innerView></template>
 <template #template let-ctx>
-    <template [swapCmp]="ctx.component" [swapCmpBindings]="ctx.bindings" [swapCmpProjectables]="ctx.projectableNodes"></template>
+    <template [swapCmp]="ctx.component" [swapCmpBindings]="ctx.bindings" [swapCmpProjectables]="ctx.projectableNodes" [swapCmpInjector]="this.innerVcr.injector"></template>
 </template>
 `
 })
