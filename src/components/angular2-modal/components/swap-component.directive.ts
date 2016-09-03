@@ -33,7 +33,7 @@ export class SwapComponentDirective {
   @Output() onCreate: EventEmitter<ComponentRef<any>> = new EventEmitter<ComponentRef<any>>(false);
 
   @Input() set swapCmp(component: any) {
-    this.component = component;
+    this.component = component;	
     this.vcRef.clear();
     if (this.component) {
       let injector = this.swapCmpInjector || this.vcRef.parentInjector;
@@ -42,6 +42,9 @@ export class SwapComponentDirective {
         injector = ReflectiveInjector.fromResolvedProviders(this.swapCmpBindings, injector);
       }
 
+	  if(injector)
+		this.cfr = injector.get(ComponentFactoryResolver);
+	  
       const cmpRef = this.vcRef.createComponent(
         this.cfr.resolveComponentFactory(component),
         this.vcRef.length,
